@@ -1,6 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getCandy } from '../reducers/candyReducer';
+import SingleCandy from './SingleCandy';
 
 class Candy extends React.Component {
   componentDidMount() {
@@ -13,20 +15,11 @@ class Candy extends React.Component {
     return (
       <table>
         <tbody>
-          <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Quantity</th>
-            <th>image</th>
-          </tr>
           {candies.map(candy => (
             <tr key={candy.id}>
-              <td>{candy.name}</td>
-              <td>{candy.description}</td>
-              <td>{candy.quantity}</td>
-              <td>
-                <img src={candy.imageUrl} />
-              </td>
+              <Link to={`/candies/${candy.id}`}>
+                <td>{candy.name}</td>
+              </Link>
             </tr>
           ))}
         </tbody>
