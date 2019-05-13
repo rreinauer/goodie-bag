@@ -18,7 +18,9 @@ module.exports = db.define('candy', {
   },
   quantity: {
     type: Sequelize.INTEGER,
-    //include max here
+    validate: {
+      max: 10,
+    },
   },
   imageUrl: {
     type: Sequelize.STRING,

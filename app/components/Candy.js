@@ -2,15 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getCandy } from '../reducers/candyReducer';
-import SingleCandy from './SingleCandy';
 
 class Candy extends React.Component {
   componentDidMount() {
     this.props.getCandy();
-    console.log(this.props);
   }
   render() {
     const candies = this.props.candies;
+    if (this.props.loading) return <div>LOADING!!!</div>;
     console.log(candies);
     return (
       <table>
@@ -28,7 +27,8 @@ class Candy extends React.Component {
   }
 }
 const mapStateToProps = state => ({
-  candies: state.candies,
+  candies: state.candies.candies,
+  loading: state.loading,
 });
 const mapDispatchToProps = dispatch => ({
   getCandy: () => dispatch(getCandy()),
